@@ -1,0 +1,24 @@
+{
+  "name": "combine",
+  "version": "1.0.0",
+  "description": "script for returning a combined and sorted array from two arrays",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mrdefenestrator/combine.git"
+  },
+  "author": "Michael Gauthiere",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrdefenestrator/combine/issues"
+  },
+  "homepage": "https://github.com/mrdefenestrator/combine#readme",
+  "devDependencies": {
+    "semantic-release": "^17.1.1"
+  }
+}
