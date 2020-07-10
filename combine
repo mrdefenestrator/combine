@@ -1,10 +1,25 @@
 #!/usr/bin/env python3
 import sys
+import json
 from typing import List
 
 
+def parse(arg: str):
+    parsed = json.loads(arg)
+
+    if type(parsed) != list:
+        raise TypeError(f'{arg} must be an array'):
+
+    if any([type(_) != float for _ in parsed]):
+        raise TypeError(f'{arg} must only contain numbers')
+
+
+def combine(a: List[float], b: List[float]):
+    pass
+
+
 def main(args: List[str]):
-    for arg in args:
+    for arg in args[1:]:
         print(f'arg {arg}')
 
 
