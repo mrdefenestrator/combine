@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-'''
-combine <first_array> <second_array>
+'''combine <first_array> <second_array>
 
 returns a combined and sorted array from two arrays
 
@@ -13,6 +12,8 @@ from typing import List, Union
 
 
 def parse(arg: str):
+    '''parses shell argument and returns a list of numbers
+    '''
     try:
         parsed = json.loads(arg)
     except json.JSONDecodeError:
@@ -27,21 +28,27 @@ def parse(arg: str):
     return parsed
 
 
-def format(item: List[Union[float, int]]):
+def format_output(item: List[Union[float, int]]):
+    '''formats and returns a lit of numbers as a string
+    '''
     return json.dumps(item)
 
 
 def combine(item_a: List[Union[float, int]], item_b: List[Union[float, int]]):
-    return(sorted(item_a + item_b))
+    '''returns a combined and sorted array from two lists
+    '''
+    return sorted(item_a + item_b)
 
 
 def main(args: List[str]):
+    '''main script
+    '''
     try:
         if len(args) != 3:
             raise RuntimeError(
                 f'requires 2 arguments but {len(args)} were given')
 
-        print(format(combine(parse(args[1]), parse(args[2]))))
+        print(format_output(combine(parse(args[1]), parse(args[2]))))
 
     except (TypeError, RuntimeError) as error:
         print(str(error))
