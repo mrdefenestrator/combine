@@ -18,10 +18,10 @@ def parse(arg: str):
     except json.JSONDecodeError:
         raise TypeError(f'unable to parse argument: {arg}')
 
-    if type(parsed) != list:
+    if isinstance(parsed, list):
         raise TypeError(f'{arg} must be an array')
 
-    if any([type(_) not in (float, int) for _ in parsed]):
+    if any([not isinstance(_, (float, int)) for _ in parsed]):
         raise TypeError(f'{arg} must only contain numbers')
 
     return parsed
@@ -31,8 +31,8 @@ def format(item: List[Union[float, int]]):
     return json.dumps(item)
 
 
-def combine(a: List[Union[float, int]], b: List[Union[float, int]]):
-    return(sorted(a + b))
+def combine(item_a: List[Union[float, int]], item_b: List[Union[float, int]]):
+    return(sorted(item_a + item_b))
 
 
 def main(args: List[str]):
@@ -43,8 +43,8 @@ def main(args: List[str]):
 
         print(format(combine(parse(args[1]), parse(args[2]))))
 
-    except (TypeError, RuntimeError) as e:
-        print(str(e))
+    except (TypeError, RuntimeError) as error:
+        print(str(error))
         print(__doc__)
 
 
