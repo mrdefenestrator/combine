@@ -18,7 +18,7 @@ def parse(arg: str):
     except json.JSONDecodeError:
         raise TypeError(f'unable to parse argument: {arg}')
 
-    if isinstance(parsed, list):
+    if not isinstance(parsed, list):
         raise TypeError(f'{arg} must be an array')
 
     if any([not isinstance(_, (float, int)) for _ in parsed]):
