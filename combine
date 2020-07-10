@@ -9,7 +9,7 @@ returns a combined and sorted array composed of arrays a and b
 '''
 import sys
 import json
-from typing import List
+from typing import List, Union
 
 
 def parse(arg: str):
@@ -21,12 +21,18 @@ def parse(arg: str):
     if type(parsed) != list:
         raise TypeError(f'{arg} must be an array')
 
-    if any([type(_) != float for _ in parsed]):
+    if any([type(_) not in (float, int) for _ in parsed]):
         raise TypeError(f'{arg} must only contain numbers')
 
+    return parsed
 
-def combine(a: List[float], b: List[float]):
-    pass
+
+def format(item: List[Union[float, int]]):
+    return json.dumps(item)
+
+
+def combine(a: List[Union[float, int]], b: List[Union[float, int]]):
+    return(sorted(a + b))
 
 
 def main(args: List[str]):
@@ -35,8 +41,7 @@ def main(args: List[str]):
             raise RuntimeError(
                 f'requires 2 arguments but {len(args)} were given')
 
-        a = parse(args[1])
-        b = parse(args[2])
+        print(format(combine(parse(args[1]), parse(args[2]))))
 
     except (TypeError, RuntimeError) as e:
         print(str(e))
