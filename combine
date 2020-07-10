@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 '''
-combine <a> <b>
+combine <first_array> <second_array>
 
-returns a combined and sorted array composed of arrays a and b
+returns a combined and sorted array from two arrays
 
-  a    json formatted array of numbers
-  b    json formatted array of numbers
+  first_array    json formatted array of numbers
+  second_array   json formatted array of numbers
 '''
 import sys
 import json
