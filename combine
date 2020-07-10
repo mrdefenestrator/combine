@@ -13,7 +13,10 @@ from typing import List
 
 
 def parse(arg: str):
-    parsed = json.loads(arg)
+    try:
+        parsed = json.loads(arg)
+    except json.JSONDecodeError:
+        raise TypeError(f'unable to parse argument: {arg}')
 
     if type(parsed) != list:
         raise TypeError(f'{arg} must be an array')
@@ -27,10 +30,17 @@ def combine(a: List[float], b: List[float]):
 
 
 def main(args: List[str]):
-    if len()
+    try:
+        if len(args) != 3:
+            raise RuntimeError(
+                f'requires 2 arguments but {len(args)} were given')
 
-    a = parse(args[1])
-    b = parse(args[2])
+        a = parse(args[1])
+        b = parse(args[2])
+
+    except (TypeError, RuntimeError) as e:
+        print(str(e))
+        print(__doc__)
 
 
 if __name__ == '__main__':
