@@ -20,7 +20,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
         repository: combine
         tags: latest
-        tag_with_ref: yes
-        tag_with_sha: yes
+        tag_with_ref: true
+        tag_with_sha: true
         build_args: ''
-        push: yes
+        push: true
