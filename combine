@@ -1,9 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
+from typing import List
 
 
-def main(argv):
-    pass
+def main(args: List[str]):
+    for arg in args:
+        print(f'arg {arg}')
 
 
 if __name__ == '__main__':
