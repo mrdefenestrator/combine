@@ -3,6 +3,7 @@ FROM alpine:latest AS ci
 WORKDIR /app
 
 RUN apk add --no-cache \
+    bash \
     python3 \
     py3-pip
 
