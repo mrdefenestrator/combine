@@ -18,7 +18,7 @@ jobs:
         env:
           GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_REPOSITORY }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
 
       - name: CI, Build, Push
         uses: docker/build-push-action@v1
