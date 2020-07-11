@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
-test -n "${GITHUB_USERNAME}"
-test -n "${GITHUB_TOKEN}"
-test -n "${GITHUB_REPOSITORY}"
+echo "in script"
 
 repo_url="https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+echo "url: ${repo_url}"
 
 npm ci
 node_modules/.bin/semantic-release --repository-url "${repo_url}"
