@@ -1,4 +1,5 @@
-FROM alpine:latest AS ci
+# Container for lint and testing
+FROM alpine:latest
 WORKDIR /app
 RUN apk add --no-cache \
     bash \

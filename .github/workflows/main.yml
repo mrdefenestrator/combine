@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Release
-        run: ./release
+      - name: Lint Test Release Deploy
+        run: ./pipeline
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
           DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}

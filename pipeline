@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+# Lint and Test
+docker build . \
+  --tag ci \
+  --file ci.Dockerfile
+docker run -it ci
+
+# Run semantic release to automatically version
+npm ci
+repo_url="https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+node_modules/.bin/semantic-release --repository-url="${repo_url}"
+
+version=$(git tag --points-at HEAD)
+if [[ -z "${version}" ]]; then
+  # No new version to release
+  exit 0
+fi
+
+# Build and publish
+commit="sha-$(git rev-parse --short HEAD)"
+echo "${DOCKER_PASSWORD}" |
+docker login \
+  --password-stdin \
+  --username "${DOCKER_USERNAME}"
+docker build . \
+  --tag latest \
+  --tag "${version}" \
+  --tag "${commit}"
+docker push latest
+docker push "${version}"
+docker push "${commit}"
