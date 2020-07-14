@@ -53,6 +53,7 @@ def main(args: List[str]):
     except (TypeError, RuntimeError) as error:
         print(str(error))
         print(__doc__)
+        exit(1)
 
 
 if __name__ == '__main__':

@@ -13,21 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Semantic Release
-        run: ./semantic-release
+      - name: Release
+        run: ./release
         env:
-          GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
-
-      - name: CI, Build, Push
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
-          repository: mgauthiere/combine
-          tags: latest
-          tag_with_ref: true
-          tag_with_sha: true
-          build_args: ""
-          push: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}

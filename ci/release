@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+# Build container for testing code and test it
+docker build . --tag ci --file ci.dockerfile
+docker run -it ci
+
+# Run semantic release to automatically version
+docker build . --tag release --file release.dockerfile
+versiondocker run -it release
+
+# Build and publish
+echo "${DOCKER_PASSWORD}" |
+docker login \
+  --password-stdin \
+  --username "${DOCKER_USERNAME}"
+docker build . \
+  --tag latest \
+  --tag "${version}" \
+  --tag "sha-$(git rev-parse --short HEAD)"
+docker push
