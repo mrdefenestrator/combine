@@ -5,5 +5,5 @@ RUN apk add --no-cache \
     py3-pip
 COPY requirements.txt ./
 RUN pip3 install -r requirements.txt
-COPY combine ./
-ENTRYPOINT [ "./combine" ]
+COPY combine.py ./
+ENTRYPOINT [ "./combine.py" ]

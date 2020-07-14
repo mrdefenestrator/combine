@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''combine <first_array> <second_array>
+'''combine.py <first_array> <second_array>
 
 returns a combined and sorted array from two arrays
 
