@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+flake8 combine.py test.py
+pylint combine.py test.py
+./test.py

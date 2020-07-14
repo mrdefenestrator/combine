@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -eu -o pipefail
-
-flake8 combine/
-pylint combine/
-echo "no tests yet"
