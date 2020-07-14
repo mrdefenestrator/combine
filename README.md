@@ -17,7 +17,7 @@ __EX:__
 __EX:__
 
 ```bash
-docker run mgauthiere/combine:latest  [1,3,5] [6,4,2]
+docker run mgauthiere/combine:latest [1,3,5] [6,4,2]
 ```
 
 ## Building
