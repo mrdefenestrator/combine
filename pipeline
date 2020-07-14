@@ -5,7 +5,7 @@ set -eu -o pipefail
 docker build . \
   --tag ci \
   --file ci.Dockerfile
-docker run -it ci
+docker run ci
 
 # Run semantic release to automatically version
 npm ci
