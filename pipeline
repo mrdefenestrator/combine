@@ -9,8 +9,8 @@ docker run ci
 
 # Run semantic release to automatically version
 npm ci
-repo_url="https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-node_modules/.bin/semantic-release --repository-url="${repo_url}"
+git_repo="https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+node_modules/.bin/semantic-release --repository-url="${git_repo}"
 
 version=$(git tag --points-at HEAD)
 if [[ -z "${version}" ]]; then
@@ -19,15 +19,16 @@ if [[ -z "${version}" ]]; then
 fi
 
 # Build and publish
+docker_repo="mgauthiere/combine"
 commit="sha-$(git rev-parse --short HEAD)"
 echo "${DOCKER_PASSWORD}" |
 docker login \
   --password-stdin \
   --username "${DOCKER_USERNAME}"
 docker build . \
-  --tag latest \
-  --tag "${version}" \
-  --tag "${commit}"
-docker push latest
-docker push "${version}"
-docker push "${commit}"
+  --tag "${docker_repo}:latest" \
+  --tag "${docker_repo}:${version}" \
+  --tag "${docker_repo}:${commit}"
+docker push "${docker_repo}:latest"
+docker push "${docker_repo}:${version}"
+docker push "${docker_repo}:${commit}"
