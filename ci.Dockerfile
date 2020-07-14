@@ -6,5 +6,5 @@ RUN apk add --no-cache \
     py3-pip
 COPY ci_requirements.txt ./
 RUN pip3 install -r ci_requirements.txt
-COPY combine ci ./
+COPY *.py ci ./
 CMD [ "./ci" ]
